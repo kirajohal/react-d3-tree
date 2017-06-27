@@ -66,7 +66,7 @@ export default class Node extends React.Component {
   }
 
   render() {
-    const { nodeData, styles } = this.props;
+    const { nodeData, styles, text } = this.props;
     const nodeStyle = nodeData._children ? { ...styles.node } : { ...styles.leafNode };
     return (
       <g
@@ -79,7 +79,7 @@ export default class Node extends React.Component {
       >
         <text
           className="nodeNameBase"
-          textAnchor={this.props.textAnchor}
+          textAnchor={text.textAnchor}
           style={nodeStyle.name}
           x="10"
           y="-10"
@@ -96,7 +96,7 @@ export default class Node extends React.Component {
         <text
           className="nodeAttributesBase"
           y="0"
-          textAnchor={this.props.textAnchor}
+          textAnchor={text.textAnchor}
           style={nodeStyle.attributes}
         >
           {
@@ -114,7 +114,6 @@ export default class Node extends React.Component {
 }
 
 Node.defaultProps = {
-  textAnchor: 'start',
   attributes: undefined,
 };
 
@@ -128,7 +127,7 @@ Node.propTypes = {
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   attributes: PropTypes.object,
-  textAnchor: PropTypes.string,
+  text: PropTypes.object.isRequired,
   circleRadius: PropTypes.number.isRequired,
   styles: PropTypes.object.isRequired,
 };
