@@ -1,4 +1,4 @@
-/* global __dirname, require, module*/
+/* global __dirname, require, module */
 
 const webpack = require('webpack');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
@@ -36,6 +36,7 @@ const config = {
     'prop-types',
     'uuid',
     'deep-equal',
+    'react-interpolate-component',
   ],
   module: {
     rules: [
