@@ -18,6 +18,7 @@ describe('<Node />', () => {
 
   const mockProps = {
     nodeData,
+    nodeTemplate: undefined,
     name: nodeData.name,
     orientation: 'horizontal',
     transitionDuration: 500,

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
+import Interpolate from 'react-interpolate-component';
 
 import './style.css';
 
@@ -66,9 +67,10 @@ export default class Node extends React.Component {
   }
 
   render() {
-    const { nodeData, styles } = this.props;
+    const { nodeData, nodeTemplate, styles } = this.props;
     const nodeStyle = nodeData._children ? { ...styles.node } : { ...styles.leafNode };
-    return (
+
+    const defaultView = (
       <g
         id={nodeData.id}
         ref={(n) => { this.node = n; }}
@@ -108,12 +110,27 @@ export default class Node extends React.Component {
             )
           }
         </text>
-      </g>
+      </g>);
+
+    if (nodeTemplate) {
+      const nodeTemplateProps = {
+        with: nodeData,
+        component: 'g',
+      };
+      return (
+        <Interpolate {...nodeTemplateProps}>
+          nodeTemplate
+        </Interpolate>
+      );
+    }
+    return (
+      defaultView
     );
   }
 }
 
 Node.defaultProps = {
+  nodeTemplate: undefined,
   textAnchor: 'start',
   attributes: undefined,
   styles: {
@@ -132,6 +149,7 @@ Node.defaultProps = {
 
 Node.propTypes = {
   nodeData: PropTypes.object.isRequired,
+  nodeTemplate: PropTypes.node,
   orientation: PropTypes.oneOf([
     'horizontal',
     'vertical',
