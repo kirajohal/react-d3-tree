@@ -81,8 +81,7 @@
     "rimraf": "^2.6.1",
     "style-loader": "^0.17.0",
     "webpack": "2.4.1",
-    "yargs": "7.1.0",
-    "react-interpolate-component": "^0.11.0"
+    "yargs": "7.1.0"
   },
   "repository": {
     "type": "git",

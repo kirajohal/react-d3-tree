@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
-import Interpolate from 'react-interpolate-component';
 
 import './style.css';
 
@@ -67,7 +66,7 @@ export default class Node extends React.Component {
   }
 
   render() {
-    const { nodeData, nodeTemplate, styles } = this.props;
+    const { nodeData, nodeAlternativeComponent, styles } = this.props;
     const nodeStyle = nodeData._children ? { ...styles.node } : { ...styles.leafNode };
 
     const defaultView = (
@@ -112,24 +111,15 @@ export default class Node extends React.Component {
         </text>
       </g>);
 
-    if (nodeTemplate) {
-      const nodeTemplateProps = {
-        with: nodeData,
-        component: 'g',
-        format: nodeTemplate,
-      };
-      return (
-        <Interpolate {...nodeTemplateProps} />
-      );
+    if (nodeAlternativeComponent) {
+      return (nodeAlternativeComponent(nodeData));
     }
-    return (
-      defaultView
-    );
+    return (defaultView);
   }
 }
 
 Node.defaultProps = {
-  nodeTemplate: undefined,
+  nodeAlternativeComponent: undefined,
   textAnchor: 'start',
   attributes: undefined,
   styles: {
@@ -148,7 +138,7 @@ Node.defaultProps = {
 
 Node.propTypes = {
   nodeData: PropTypes.object.isRequired,
-  nodeTemplate: PropTypes.node,
+  nodeAlternativeComponent: PropTypes.node,
   orientation: PropTypes.oneOf([
     'horizontal',
     'vertical',
