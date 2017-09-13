@@ -119,7 +119,7 @@ export default class Node extends React.Component {
       };
       return (
         <Interpolate {...nodeTemplateProps}>
-          nodeTemplate
+          { nodeTemplate }
         </Interpolate>
       );
     }
