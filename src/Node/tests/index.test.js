@@ -18,7 +18,7 @@ describe('<Node />', () => {
 
   const mockProps = {
     nodeData,
-    nodeTemplate: undefined,
+    nodeAlternativeComponent: undefined,
     name: nodeData.name,
     orientation: 'horizontal',
     transitionDuration: 500,
@@ -223,6 +223,25 @@ describe('<Node />', () => {
 
     expect(renderedComponent.instance().applyTransform)
     .toHaveBeenCalledWith(fixture);
+  });
+
+  it('works if alternative component gets passed in', () => {
+    /**
+   * @param {int} data node data.
+   * @returns {object} the object passed in with the data.
+   */
+    function fixture(data) {
+      return (<p id="alt">{data.name}</p>);
+    }
+
+    const renderedComponent = shallow(
+      <Node
+        {...mockProps}
+        NodeAlternativeComponent={fixture}
+      />
+    );
+
+    expect(renderedComponent.find('#alt')).toBeDefined();
   });
 
 

@@ -360,7 +360,7 @@ Tree.propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
   }),
-  nodeAlternativeComponent: PropTypes.node,
+  nodeAlternativeComponent: PropTypes.func,
   separation: PropTypes.shape({
     siblings: PropTypes.number,
     nonSiblings: PropTypes.number,

@@ -66,7 +66,7 @@ export default class Node extends React.Component {
   }
 
   render() {
-    const { nodeData, nodeAlternativeComponent, styles } = this.props;
+    const { nodeData, NodeAlternativeComponent, styles } = this.props;
     const nodeStyle = nodeData._children ? { ...styles.node } : { ...styles.leafNode };
 
     const defaultView = (
@@ -111,15 +111,15 @@ export default class Node extends React.Component {
         </text>
       </g>);
 
-    if (nodeAlternativeComponent) {
-      return (nodeAlternativeComponent(nodeData));
+    if (NodeAlternativeComponent) {
+      return (NodeAlternativeComponent(nodeData));
     }
     return (defaultView);
   }
 }
 
 Node.defaultProps = {
-  nodeAlternativeComponent: undefined,
+  NodeAlternativeComponent: undefined,
   textAnchor: 'start',
   attributes: undefined,
   styles: {
@@ -138,7 +138,7 @@ Node.defaultProps = {
 
 Node.propTypes = {
   nodeData: PropTypes.object.isRequired,
-  nodeAlternativeComponent: PropTypes.node,
+  NodeAlternativeComponent: PropTypes.func,
   orientation: PropTypes.oneOf([
     'horizontal',
     'vertical',
