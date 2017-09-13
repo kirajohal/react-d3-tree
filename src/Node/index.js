@@ -116,11 +116,10 @@ export default class Node extends React.Component {
       const nodeTemplateProps = {
         with: nodeData,
         component: 'g',
+        format: nodeTemplate,
       };
       return (
-        <Interpolate {...nodeTemplateProps}>
-          { nodeTemplate }
-        </Interpolate>
+        <Interpolate {...nodeTemplateProps} />
       );
     }
     return (
