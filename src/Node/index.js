@@ -38,8 +38,8 @@ export default class Node extends React.Component {
   setTransformOrientation(x, y) {
     console.log(this.props.nodeSize);
     if (this.props.nodeSize) {
-      x -= this.props.nodeSize.x / 2;
-      y -= this.props.nodeSize.y / 2;
+      x -= this.props.nodeSize.x / 4;
+      y -= this.props.nodeSize.y / 4;
     }
     console.log(`x: ${x} y: ${y}`);
     return this.props.orientation === 'horizontal' ?
