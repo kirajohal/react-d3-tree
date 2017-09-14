@@ -36,7 +36,7 @@ export default class Node extends React.Component {
   }
 
   setTransformOrientation(x, y) {
-    console.log(this.node);
+    console.log(this.node.clientHeight);
     if (this.props.nodeSize) {
       x -= this.props.nodeSize.x / 4;
     }
