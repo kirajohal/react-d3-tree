@@ -36,6 +36,7 @@ export default class Node extends React.Component {
   }
 
   setTransformOrientation(x, y) {
+    console.log(this.props.nodeSize);
     return this.props.orientation === 'horizontal' ?
       `translate(${y},${x})` :
       `translate(${x},${y})`;
@@ -144,6 +145,7 @@ Node.defaultProps = {
       attributes: {},
     },
   },
+  nodeSize: undefined,
 };
 
 Node.propTypes = {
@@ -160,4 +162,8 @@ Node.propTypes = {
   textAnchor: PropTypes.string,
   circleRadius: PropTypes.number.isRequired,
   styles: PropTypes.object,
+  nodeSize: PropTypes.shape({
+    x: PropTypes.number,
+    y: PropTypes.number,
+  }),
 };
