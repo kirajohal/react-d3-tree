@@ -243,6 +243,8 @@ export default class Tree extends React.Component {
       )
       .children((d) => d._collapsed ? null : d._children);
 
+    console.log(tree);
+
     const rootNode = this.state.data[0];
     const nodes = tree.nodes(rootNode);
     const links = tree.links(nodes);
@@ -261,6 +263,7 @@ export default class Tree extends React.Component {
 
   render() {
     const { nodes, links } = this.generateTree();
+    console.log(this.generateTree());
     const {
       orientation,
       translate,
