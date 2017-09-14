@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
+import { withContentRect } from 'react-measure';
 
 import './style.css';
 
@@ -44,6 +45,17 @@ export default class Node extends React.Component {
     return this.props.orientation === 'horizontal' ?
       `translate(${y},${x})` :
       `translate(${x},${y})`;
+  }
+
+  getNodeAlternativeComponentDimensions(nodeComponent) {
+    const itemToMeasure = withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
+      <div ref={measureRef}>
+        {JSON.stringify(contentRect, null, 2)}
+        {console.log(measure)}
+        {nodeComponent}
+      </div>
+    ));
+    return itemToMeasure;
   }
 
   applyTransform(transform, opacity = 1, done = () => {}) {
@@ -117,7 +129,7 @@ export default class Node extends React.Component {
       </g>);
 
     if (NodeAlternativeComponent) {
-      console.log(NodeAlternativeComponent);
+      console.log(this.getNodeAlternativeComponentDimensions(NodeAlternativeComponent));
       return (
         <g
           id={nodeData.id}

@@ -37,6 +37,7 @@ const config = {
     'uuid',
     'deep-equal',
     'react-interpolate-component',
+    'react-measure',
   ],
   module: {
     rules: [
