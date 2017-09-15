@@ -140,7 +140,8 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
-      console.log(alternateView);
+      const measuredView = this.getNodeAlternativeComponentDimensions(alternateView);
+      console.log(measuredView);
       return (alternateView);
     }
     return (defaultView);
