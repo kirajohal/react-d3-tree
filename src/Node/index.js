@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
-import { withContentRect } from 'react-measure';
+import Measure from 'react-measure';
 
 import './style.css';
 
@@ -47,23 +47,17 @@ export default class Node extends React.Component {
   }
 
   getNodeAlternativeComponentDimensions(nodeComponent) {
-    const itemToMeasure = withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
-      <div ref={measureRef}>
-        {JSON.stringify(contentRect, null, 2)}
-        {console.log(measure)}
-        {nodeComponent}
-      </div>
-    ));
-    console.log(withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
-      <div ref={measureRef}>
-        {JSON.stringify(contentRect, null, 2)}
-        {console.log(measure)}
-        {nodeComponent}
-      </div>
-    )));
-    console.log(itemToMeasure);
-    debugger;
-    return itemToMeasure;
+    const measuredComponent = (<Measure
+      bounds
+    >
+      {({ measureRef }) =>
+        <div ref={measureRef} >
+          {nodeComponent}
+        </div>
+        }
+    </Measure>);
+    console.log(measuredComponent);
+    return measuredComponent;
   }
 
   applyTransform(transform, opacity = 1, done = () => {}) {
@@ -148,7 +142,7 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
-      console.log(this.getNodeAlternativeComponentDimensions(alternateView));
+      console.log(alternateView);
       return (alternateView);
     }
     return (defaultView);
