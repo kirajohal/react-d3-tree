@@ -37,8 +37,7 @@ export default class Node extends React.Component {
   }
 
   setTransformOrientation(x, y) {
-    const nodeInfo = select(this.node);
-    console.log(nodeInfo);
+    // const nodeInfo = select(this.node);
     if (this.props.nodeSize) {
       x -= this.props.nodeSize.x / 4;
     }
@@ -48,6 +47,7 @@ export default class Node extends React.Component {
   }
 
   getNodeAlternativeComponentDimensions(nodeComponent) {
+    debugger;
     const itemToMeasure = withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
       <div ref={measureRef}>
         {JSON.stringify(contentRect, null, 2)}
@@ -129,8 +129,7 @@ export default class Node extends React.Component {
       </g>);
 
     if (NodeAlternativeComponent) {
-      console.log(this.getNodeAlternativeComponentDimensions(NodeAlternativeComponent));
-      return (
+      const alternateView = (
         <g
           id={nodeData.id}
           ref={(n) => { this.node = n; }}
@@ -141,6 +140,8 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
+      console.log(alternateView);
+      return (alternateView);
     }
     return (defaultView);
   }

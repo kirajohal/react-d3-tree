@@ -56,6 +56,7 @@ module.exports = {
     "newline-per-chained-call": 0,
     "no-confusing-arrow": 0,
     "no-console": 1,
+    "no-debugger": 0,
     "no-param-reassign": "warn",
     "no-use-before-define": 0,
     "no-underscore-dangle": "off",
