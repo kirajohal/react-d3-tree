@@ -59,7 +59,6 @@ export default class Node extends React.Component {
         </div>
         }
     </Measure>);
-    console.log(measuredComponent);
     return measuredComponent;
   }
 
@@ -134,7 +133,7 @@ export default class Node extends React.Component {
       </g>);
 
     if (NodeAlternativeComponent) {
-      const alternateView = (
+      const alternateComponent = (
         <g
           id={nodeData.id}
           ref={(n) => { this.node = n; }}
@@ -145,7 +144,9 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
-      console.log(this.getNodeAlternativeComponentDimensions(alternateView));
+      const alternateView = this.getNodeAlternativeComponentDimensions(alternateComponent);
+      console.log(alternateView);
+      console.log(this.state);
       return (alternateView);
     }
     return (defaultView);
