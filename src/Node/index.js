@@ -16,6 +16,7 @@ export default class Node extends React.Component {
 
     this.state = {
       transform: this.setTransformOrientation(originX, originY),
+      width: 50,
       initialStyle: {
         opacity: 0,
       },
@@ -50,7 +51,9 @@ export default class Node extends React.Component {
     const measuredComponent = (<Measure
       bounds
       onResize={(contentRect) => {
-        this.setState({ dimensions: contentRect.bounds });
+        console.log(contentRect);
+        this.setState({ width: contentRect.bounds.width });
+        console.log(this.state);
       }}
     >
       {({ measureRef }) =>
@@ -145,7 +148,6 @@ export default class Node extends React.Component {
           {NodeAlternativeComponent(nodeData)}
         </g>);
       const alternateView = this.getNodeAlternativeComponentDimensions(alternateComponent);
-      console.log(alternateView);
       console.log(this.state);
       return (alternateView);
     }
