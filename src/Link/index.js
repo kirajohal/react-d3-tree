@@ -62,8 +62,8 @@ export default class Link extends React.PureComponent {
 
   elbowPath(d, orientation) {
     return orientation === 'horizontal' ?
-      `M${d.source.y},${d.source.x}V${d.target.x}H${d.target.y}` :
-      `M${d.source.x},${d.source.y}V${d.target.y}H${d.target.x}`;
+      `M${d.source.y},${d.source.x}V${d.target.x * 1.5}H${d.target.y * 1.5}` :
+      `M${d.source.x},${d.source.y}V${d.target.y * 1.5}H${d.target.x * 1.5}`;
   }
 
   drawPath() {
