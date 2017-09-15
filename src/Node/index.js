@@ -47,7 +47,6 @@ export default class Node extends React.Component {
   }
 
   getNodeAlternativeComponentDimensions(nodeComponent) {
-    debugger;
     const itemToMeasure = withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
       <div ref={measureRef}>
         {JSON.stringify(contentRect, null, 2)}
@@ -55,6 +54,15 @@ export default class Node extends React.Component {
         {nodeComponent}
       </div>
     ));
+    console.log(withContentRect('bounds')(({ measureRef, measure, contentRect }) => (
+      <div ref={measureRef}>
+        {JSON.stringify(contentRect, null, 2)}
+        {console.log(measure)}
+        {nodeComponent}
+      </div>
+    )));
+    console.log(itemToMeasure);
+    debugger;
     return itemToMeasure;
   }
 
@@ -140,8 +148,7 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
-      const measuredView = this.getNodeAlternativeComponentDimensions(alternateView);
-      console.log(measuredView);
+      console.log(this.getNodeAlternativeComponentDimensions(alternateView));
       return (alternateView);
     }
     return (defaultView);
