@@ -49,6 +49,9 @@ export default class Node extends React.Component {
   getNodeAlternativeComponentDimensions(nodeComponent) {
     const measuredComponent = (<Measure
       bounds
+      onResize={(contentRect) => {
+        this.setState({ dimensions: contentRect.bounds });
+      }}
     >
       {({ measureRef }) =>
         <div ref={measureRef} >
