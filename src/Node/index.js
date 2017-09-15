@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 import { select } from 'd3';
-import Measure from 'react-measure';
 
 import './style.css';
 
@@ -16,7 +15,6 @@ export default class Node extends React.Component {
 
     this.state = {
       transform: this.setTransformOrientation(originX, originY),
-      width: 50,
       initialStyle: {
         opacity: 0,
       },
@@ -38,31 +36,13 @@ export default class Node extends React.Component {
   }
 
   setTransformOrientation(x, y) {
-    // const nodeInfo = select(this.node);
     if (this.props.nodeSize) {
-      x -= this.props.nodeSize.x / 4;
+      x -= this.props.nodeSize.x / 2;
+      y -= this.props.nodeSize.y / 2;
     }
     return this.props.orientation === 'horizontal' ?
       `translate(${y},${x})` :
       `translate(${x},${y})`;
-  }
-
-  getNodeAlternativeComponentDimensions(nodeComponent) {
-    const measuredComponent = (<Measure
-      bounds
-      onResize={(contentRect) => {
-        console.log(contentRect);
-        this.setState({ width: contentRect.bounds.width });
-        console.log(this.state);
-      }}
-    >
-      {({ measureRef }) =>
-        <div ref={measureRef} >
-          {nodeComponent}
-        </div>
-        }
-    </Measure>);
-    return measuredComponent;
   }
 
   applyTransform(transform, opacity = 1, done = () => {}) {
@@ -136,20 +116,16 @@ export default class Node extends React.Component {
       </g>);
 
     if (NodeAlternativeComponent) {
-      const alternateComponent = (
-        <g
-          id={nodeData.id}
-          ref={(n) => { this.node = n; }}
-          style={this.state.initialStyle}
-          className={nodeData._children ? 'nodeBase' : 'leafNodeBase'}
-          transform={this.state.transform}
-          onClick={this.handleClick}
-        >
-          {NodeAlternativeComponent(nodeData)}
-        </g>);
-      this.getNodeAlternativeComponentDimensions(alternateComponent);
-      console.log(this.state);
-      return (alternateComponent);
+      return (<g
+        id={nodeData.id}
+        ref={(n) => { this.node = n; }}
+        style={this.state.initialStyle}
+        className={nodeData._children ? 'nodeBase' : 'leafNodeBase'}
+        transform={this.state.transform}
+        onClick={this.handleClick}
+      >
+        {NodeAlternativeComponent(nodeData)}
+      </g>);
     }
     return (defaultView);
   }
