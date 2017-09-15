@@ -119,7 +119,7 @@ export default class Node extends React.Component {
       return (<g
         id={nodeData.id}
         ref={(n) => { this.node = n; }}
-        style={this.state.initialStyle}
+        style={nodeStyle}
         transform={this.state.transform}
         onClick={this.handleClick}
       >
