@@ -142,7 +142,7 @@ export default class Node extends React.Component {
         >
           {NodeAlternativeComponent(nodeData)}
         </g>);
-      console.log(alternateView);
+      console.log(this.getNodeAlternativeComponentDimensions(alternateView));
       return (alternateView);
     }
     return (defaultView);
