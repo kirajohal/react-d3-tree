@@ -120,7 +120,6 @@ export default class Node extends React.Component {
         id={nodeData.id}
         ref={(n) => { this.node = n; }}
         style={this.state.initialStyle}
-        className={nodeData._children ? 'nodeBase' : 'leafNodeBase'}
         transform={this.state.transform}
         onClick={this.handleClick}
       >
